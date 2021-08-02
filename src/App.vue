@@ -3,9 +3,15 @@
     <div id="app">
       <div id="nav">
       
-        <contenitore></contenitore>
-        <domanda :color="'nero'"></domanda>
-        <risposta></risposta>
+      <contenitore></contenitore>
+      <domanda :qst="questions[radomIndex].question"></domanda>
+      <risposta :answ="questions[radomIndex].answ1"></risposta>
+      <risposta :answ="questions[radomIndex].answ2"></risposta>
+      <risposta :answ="questions[radomIndex].answ3"></risposta>
+      <risposta :answ="questions[radomIndex].answ4"></risposta>
+
+      
+
       
       
       <div class="row-question">
@@ -36,6 +42,7 @@ export default {
   },
   data() {
     return {
+      radomIndex: 0,
       questions: [
         {
           question: "In che anno è stata scoperta l'America?",

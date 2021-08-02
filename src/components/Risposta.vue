@@ -1,20 +1,14 @@
 <template>
   <div>
-  
-   
-    
-   
-
-  
+    <button>{{answ}}</button>
   </div>
-  
 </template>
 
 <script>
 export default {
   name: "Risposta",
   props: {
-    risposte: String,
+    answ: String,
   }
 }
 </script>
