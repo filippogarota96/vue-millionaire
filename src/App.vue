@@ -5,18 +5,11 @@
       
       <contenitore></contenitore>
       <domanda :qst="questions[radomIndex].question"></domanda>
-      <risposta :answ="questions[radomIndex].answ1"></risposta>
-      <risposta :answ="questions[radomIndex].answ2"></risposta>
-      <risposta :answ="questions[radomIndex].answ3"></risposta>
-      <risposta :answ="questions[radomIndex].answ4"></risposta>
-
-      
-
-      
-      
-      <div class="row-question">
-
-        
+      <div class="answer-container">
+        <risposta  class="answer" :answ=" 'A: ' + questions[radomIndex].answers[0].text" :class="correct ? check(questions[radomIndex].answers[0]) : '' " v-on:choose-answer="select"></risposta>
+        <risposta  class="answer" :answ=" 'B: ' + questions[radomIndex].answers[1].text" :class="correct ? check(questions[radomIndex].answers[1]) : '' " v-on:choose-answer="select"></risposta>
+        <risposta  class="answer" :answ=" 'C: ' + questions[radomIndex].answers[2].text" :class="correct ? check(questions[radomIndex].answers[2]) : '' " v-on:choose-answer="select"></risposta>
+        <risposta  class="answer" :answ=" 'D: ' + questions[radomIndex].answers[3].text"  :class="correct ? check(questions[radomIndex].answers[3]) : '' " v-on:choose-answer="select"></risposta>
       </div>
       
     </div>
@@ -33,6 +26,7 @@ import Domanda from "@/components/Domanda.vue"
 import Risposta from "@/components/Risposta.vue"
 
 
+
 export default {
   name: 'App',
   components: {
@@ -40,59 +34,89 @@ export default {
     'domanda': Domanda,
     'risposta': Risposta
   },
-  data() {
+  data: function() {
     return {
-      radomIndex: 0,
+      radomIndex: 1,
+      correct: false,
       questions: [
         {
           question: "In che anno è stata scoperta l'America?",
-          answ1: "1321",
-          answ2: "1492",
-          answ3: "1540",
-          answ4: "1200"
+          answers: [
+            {text: '1219', },
+            {text: '1492', correct: true},
+            {text: '1569', },
+            {text: '1321', },
+             
+          ]
         },
-
         {
           question: "Come mi chiamo?",
-          answ1: "Giacomo",
-          answ2: "Daniele",
-          answ3: "Filippo",
-          answ4: "Carlo"
+          answers: [
+            {text: 'Daniele', },
+            {text: 'Filippo', correct: true},
+            {text: 'Giacomo', },
+            {text: 'Carlo', }, 
+          ]
         },
-
         {
-          question: "Ricetta della cabonara?",
-          answ1: "pesce, aglio, prezzemolo",
-          answ2: "salsiccia, pecorino, miele",
-          answ3: "uova, guanciale, pepe",
-          answ4: "zucchine, uova, caviale"
+        question: "Ricetta della cabonara?",
+         answers: [
+            {text: 'tonno, pomodoro, sedano', },
+            {text: 'cipolle, bacon, panna', },
+            {text: 'uova, pepe, guanciale', correct: true},
+            {text: 'basilico, pinoli', }, 
+          ]
         }
-
-      
       ]
-    
+    }
+  },
+  methods: {
+    select(){
+      this.correct = true;
+    },
+
+    check(answ) {
+      if (answ.correct == true) {
+        return 'correct';
+      } else {
+        return 'wrong';
+      }
     }
   }
 }
 
 
 
-
-
-
-
-
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #11093A;
   text-align: center;
-  color: #2c3e50;
-}
+  
+  .answer-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 60%;
+      margin: 0 auto;
+  
+  }
+  .answer {
+    margin: 45px;
+   
+  }
 
+  .correct {
+    background-color: green;
+  }
+
+  .wrong {
+    background-color: red;
+  }
+  
+}
 
 
 </style>

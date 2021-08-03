@@ -18,13 +18,12 @@
 
 export default {
   name: "Contenitore",
-
   }
 </script>
 
 <style lang="scss" scoped>
   header {
-    height: 400px;
+    height: 300px;
     background: blue;
 
     .container-logo {
