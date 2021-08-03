@@ -6,17 +6,10 @@
       <contenitore></contenitore>
       <domanda :qst="questions[radomIndex].question"></domanda>
       <div class="answer-container">
-        <risposta  class="answer" :answ=" 'A: ' + questions[radomIndex].answers[0].text" :class="correct ? check(questions[radomIndex].answers[0]) : '' " v-on:choose-answer="select"></risposta>
-        <risposta  class="answer" :answ=" 'B: ' + questions[radomIndex].answers[1].text" :class="correct ? check(questions[radomIndex].answers[1]) : '' " v-on:choose-answer="select"></risposta>
-        <risposta  class="answer" :answ=" 'C: ' + questions[radomIndex].answers[2].text" :class="correct ? check(questions[radomIndex].answers[2]) : '' " v-on:choose-answer="select"></risposta>
-        <risposta  class="answer" :answ=" 'D: ' + questions[radomIndex].answers[3].text"  :class="correct ? check(questions[radomIndex].answers[3]) : '' " v-on:choose-answer="select"></risposta>
+        <risposta v-for="item in questions[radomIndex].answers" :key="item.id" class="answer" :answ=" item.text" :class="correct ? check(item) : '' " v-on:choose-answer="select"></risposta>
       </div>
       
     </div>
-  
-      
-    
-    <router-view />
   </div>
 </template>
 
