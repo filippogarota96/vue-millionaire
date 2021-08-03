@@ -36,7 +36,7 @@ export default {
   },
   data: function() {
     return {
-      radomIndex: 1,
+      radomIndex: 0,
       correct: false,
       questions: [
         {
@@ -69,6 +69,9 @@ export default {
         }
       ]
     }
+  },
+  mounted: function() {
+    this.radomIndex = Math.floor(Math.random() * this.questions.length)
   },
   methods: {
     select(){
